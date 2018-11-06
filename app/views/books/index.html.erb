@@ -10,13 +10,14 @@
             <td>
               <h5><%= book.title%></h4>
               <h6><%= book.author%></h6>
-              <p><%= book.description%></p>
+              <p><%=book.description%></p>
             </td>
             
           </tr>
         <% end %>
       </tbody>
   </table>
+  <%= paginate @books %>
 </div>
  <script>
    $("tr[data-link]").click(function() {
