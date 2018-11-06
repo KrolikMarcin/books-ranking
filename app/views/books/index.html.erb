@@ -1,0 +1,26 @@
+<div class='container'>
+  <%= form_tag books_path, method: :get do %>
+    <%= text_field_tag :query, '',class: 'form' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+  <table class='table table-striped'>
+    <tbody>
+        <% @books.each do |book|%>
+          <tr data-link="<%= book_path(book) %>" style="cursor: pointer;">
+            <td>
+              <h5><%= book.title%></h4>
+              <h6><%= book.author%></h6>
+              <p><%= book.description%></p>
+            </td>
+            
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+</div>
+ <script>
+   $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>
+  
