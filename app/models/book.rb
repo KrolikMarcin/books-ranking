@@ -7,4 +7,8 @@ class Book < ApplicationRecord
   def find_rate(user)
     rates.find_by(user: user)
   end
+
+  def average
+    rates.calculate(:average, :number)
+  end
 end

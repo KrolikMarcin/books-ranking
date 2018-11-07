@@ -1,4 +1,4 @@
-<%= flash[:notice] if flash[:notice] %>
+
 <%= form_tag books_path, method: :get, class: 'form-inline' do %>
   <center> 
     <%= text_field_tag :query, '',type:"text", class:"form-control", 
@@ -29,8 +29,11 @@
               <% if book.find_rate(current_user).nil? %>
                 <%= render partial: 'rates/form', locals: { book: book, rate: Rate.new } %>
               <% else %>
-                <%= link_to 'Delete rate', rate_path(book.find_rate(current_user)), method: :delete, class: 'btn btn-sm btn-danger',
-                      data: { confirm: 'Are you sure you want to delete your rating' } %>
+                <p>
+                  Your rating: <%= book.find_rate(current_user).number %>
+                  <%= link_to 'Delete', rate_path(book.find_rate(current_user)), method: :delete, class: 'btn btn-sm btn-danger',
+                      data: { confirm: 'Are you sure you want to delete your rating?' } %>
+                </p>
               <% end %>
             <% end %>
           </td>   

@@ -3,11 +3,7 @@ class RatesController < ApplicationController
   def create
     rate = Rate.new(rate_params)
     rate.assign_attributes(user: current_user, book: Book.find(params[:book_id]))
-    if rate.save
-      redirect_to(request.env['HTTP_REFERER'], notice: 'Rating created successfully')
-    else
-      redirect_to books_path
-    end
+    redirect_to(request.env['HTTP_REFERER'], notice: 'Rating created successfully') if rate.save
   end
 
   def destroy

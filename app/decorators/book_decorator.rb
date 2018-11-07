@@ -27,11 +27,6 @@ class BookDecorator < ApplicationDecorator
   end
 
   def round_average
-    average.nil? ? 0 : average.round
+    object.average.nil? ? 0 : object.average.round
   end
-
-  def average
-    object.rates.average(:number)
-  end
-
 end
