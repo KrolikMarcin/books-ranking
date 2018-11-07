@@ -6,4 +6,9 @@ class BooksController < ApplicationController
                Book.all.page(params[:page]).decorate
              end
   end
+
+  def show
+    @book = Book.find(params[:id]).decorate
+  end
+
 end

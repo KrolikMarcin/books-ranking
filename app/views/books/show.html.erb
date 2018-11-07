@@ -1,0 +1,23 @@
+
+  <table class='table table-striped'>
+    <tbody>
+        <tr>
+          <td>
+            <h4>
+              <%= @book.title%>
+              <%=@book.stars %>
+            </h4>
+            <h5><%= @book.author%></h5>
+            <p><%= @book.description%></p>
+            <% if user_signed_in?%>
+              <% if @book.find_rate(current_user).nil? %>
+                <%= render partial: 'rates/form', locals: { book: @book, rate: Rate.new } %>
+              <% else %>
+                <%= link_to 'Delete rate', rate_path(@book.find_rate(current_user)), method: :delete, class: 'btn btn-sm btn-danger',
+                      data: { confirm: 'Are you sure you want to delete this rate?' } %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+  </table>

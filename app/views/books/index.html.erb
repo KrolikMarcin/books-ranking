@@ -1,27 +1,48 @@
-<div class='container'>
-  <%= form_tag books_path, method: :get do %>
-    <%= text_field_tag :query, '',class: 'form' %>
-    <%= submit_tag 'Search' %>
-  <% end %>
-  <table class='table table-striped'>
-    <tbody>
-        <% @books.each do |book|%>
-          <tr data-link="<%= book_path(book) %>" style="cursor: pointer;">
-            <td>
-              <h5><%= book.title%></h4>
+<%= flash[:notice] if flash[:notice] %>
+<%= form_tag books_path, method: :get, class: 'form-inline' do %>
+  <center> 
+    <%= text_field_tag :query, '',type:"text", class:"form-control", 
+        placeholder:"Search for a movie or author", style:"width: 400px;"%>
+    <%= submit_tag 'Search', class:"btn btn-outline-secondary"%>
+  </center>
+<% end %>
+
+<table class='table table-striped'>
+  <tbody>
+      <% @books.each_with_index do |book, index|%>
+        <tr>
+          <% if params[:page] %>
+            <td><%= book.number(params[:page]) + index + 1 %></td>
+          <% else %>
+            <td><%=  index + 1 %></td>
+          <% end %>
+          <td >
+            <div class='clickable' data-link="<%= book_path(book) %>" style="cursor: pointer;">
+              <h5>
+                <%= book.title %>
+                <%=book.stars %>
+              </h5>
               <h6><%= book.author%></h6>
               <p><%=book.description%></p>
-            </td>
-            
-          </tr>
-        <% end %>
-      </tbody>
-  </table>
-  <%= paginate @books %>
-</div>
- <script>
-   $("tr[data-link]").click(function() {
-    window.location = $(this).data("link")
-  })
+            </div>
+            <% if user_signed_in?%>
+              <% if book.find_rate(current_user).nil? %>
+                <%= render partial: 'rates/form', locals: { book: book, rate: Rate.new } %>
+              <% else %>
+                <%= link_to 'Delete rate', rate_path(book.find_rate(current_user)), method: :delete, class: 'btn btn-sm btn-danger',
+                      data: { confirm: 'Are you sure you want to delete your rating' } %>
+              <% end %>
+            <% end %>
+          </td>   
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+<%= paginate @books %>
+<script>
+$(".clickable").click(function () {
+    window.location = $(this).data("link");
+    
+});
 </script>
   
