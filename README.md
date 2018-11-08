@@ -1,24 +1,10 @@
-# README
+Ranking of books.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple book ranking that allows you to evaluate books.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gems I have used:
+-pg search:  serves to search for text in the database.
+-kaminari: serves for pagination.
+-draper: serves for decorate objects
+-devise: serves for registry, login and authentication user
+-bootsrap-sass: serves for using bootstrap
