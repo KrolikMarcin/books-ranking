@@ -7,4 +7,4 @@ The gems I have used:
 -kaminari: serves for pagination.
 -draper: serves for decorate objects
 -devise: serves for registry, login and authentication user
--bootsrap-sass: serves for using bootstrap
+-bootsrap-sass: serves for using bootstrap.
