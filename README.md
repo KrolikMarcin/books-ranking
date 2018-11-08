@@ -1,10 +1,10 @@
-Ranking of books.
+Ranking of books.<br />
 
-Simple book ranking that allows you to evaluate books.
+Simple book ranking that allows you to evaluate books.<br />
 
-The gems I have used:
--pg search:  serves to search for text in the database.
--kaminari: serves for pagination.
--draper: serves for decorate objects.
--devise: serves for registry, login and authentication user.
--bootsrap-sass: serves for using bootstrap.
+The gems I have used:<br />
+-pg search:  serves to search for text in the database.<br />
+-kaminari: serves for pagination.<br />
+-draper: serves for decorate objects.<br />
+-devise: serves for registry, login and authentication user.<br />
+-bootsrap-sass: serves for using bootstrap.<br />
