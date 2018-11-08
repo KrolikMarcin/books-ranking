@@ -1,9 +1,9 @@
 class BooksController < ApplicationController
   def index
     @books = if params[:query]
-               Book.order(:title).search_for(params[:query]).includes(:rates).page(params[:page]).decorate
+               Book.sorted_books.search_for(params[:query]).page(params[:page]).decorate
              else
-               Book.all.order(:title).includes(:rates).page(params[:page]).decorate
+               Book.sorted_books.page(params[:page]).decorate
              end
   end
 
