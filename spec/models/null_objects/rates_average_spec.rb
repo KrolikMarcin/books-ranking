@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe NullObjects::Like do
+RSpec.describe NullObjects::RatesAverage do
   subject { described_class.new }
 
   describe '#round' do

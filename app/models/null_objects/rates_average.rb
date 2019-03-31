@@ -1,5 +1,5 @@
 module NullObjects
-  class LikeAverage
+  class RatesAverage
     def round
       0
     end
