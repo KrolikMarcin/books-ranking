@@ -5,5 +5,8 @@ class Book < ApplicationRecord
   pg_search_scope :search_for, against: %i[title author]
 
   scope :sorted_books, -> { joins(:rates).group(:id).order('avg(rates.number) DESC') }
-  scope :find_rate, ->(author) { rates.find_by(user: author) }
+
+  def find_rate(author)
+    rates.find_by(user: author)
+  end
 end
