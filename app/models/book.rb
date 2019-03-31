@@ -2,7 +2,7 @@ class Book < ApplicationRecord
   has_many :rates, dependent: :destroy
   include PgSearch
 
-  pg_search_scope :search_for, against: %i(title author)
+  pg_search_scope :search_for, against: %i[title author]
 
   def self.sorted_books
     joins(:rates).group(:id).order('avg(rates.number) DESC')
@@ -13,6 +13,6 @@ class Book < ApplicationRecord
   end
 
   def average
-    rates.calculate(:average, :number)
+    rates.average(:number)
   end
 end

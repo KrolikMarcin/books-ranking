@@ -27,6 +27,6 @@ class BookDecorator < ApplicationDecorator
   end
 
   def round_average
-    object.average.nil? ? 0 : object.average.round
+    object.average&.round || 0
   end
 end
