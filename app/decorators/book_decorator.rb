@@ -7,10 +7,10 @@ class BookDecorator < ApplicationDecorator
 
   def stars
     h.content_tag(:div, nil) do
-      round_average.times do
+      round_like_average.times do
         h.concat(star)
       end
-      (10 - round_average).times do
+      (10 - round_like_average).times do
         h.concat(empty_star)
       end
     end
@@ -26,7 +26,11 @@ class BookDecorator < ApplicationDecorator
     h.content_tag(:span, nil, class: 'glyphicon glyphicon-star-empty')
   end
 
-  def round_average
-    object.average&.round || 0
+  def like_average
+    object.rates.average(:number) || NullObjects::LikeAverage.new
+  end
+
+  def round_like_average
+    like_average.round
   end
 end
